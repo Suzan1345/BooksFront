@@ -1,18 +1,17 @@
 <template>
-  <div>
-    <h1>Meine Bücher</h1>
-    <BookList :books="bookList" />
-  </div>
+  <BookList :books="books" />
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import BookList from './components/Booklist.vue'
 
-const bookList = [
-  { title: 'Der Hobbit', author: 'J.R.R. Tolkien' },
-  { title: 'Normal People', author: 'Sally Rooney' },
-  { title: 'Circe', author: 'Madeline Miller' }
-]
+const books = ref([])
+
+onMounted(async () => {
+  const res = await fetch('https://books-1-1ljs.onrender.com')
+  books.value = await res.json()
+})
 </script>
 
 

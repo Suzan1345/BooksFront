@@ -9,7 +9,7 @@ import BookList from './components/Booklist.vue'
 const books = ref([])
 
 onMounted(async () => {
-  const res = await fetch('https://books-1-1ljs.onrender.com')
+  const res = await fetch('https://books-1-1ljs.onrender.com/api/books')
   books.value = await res.json()
 })
 </script>

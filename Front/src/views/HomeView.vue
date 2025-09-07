@@ -1,9 +1,4 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
-<template>
-  <template>
+ <template>
     <main class="page">
       <!-- Hero / Header -->
       <header class="hero">
@@ -68,12 +63,14 @@ import TheWelcome from '../components/TheWelcome.vue'
     </main>
   </template>
 
-  <script setup lang="ts">
-    import { ref, onMounted, watch } from 'vue'
-    import BaseButton from '@/components/BaseButton.vue'
-    import BookCard from '@/components/BookCard.vue'
-    import { getFeaturedBooks, searchBooks, getCategories } from '@/services/bookService'
-    import type { Book } from '@/types/Book'
+
+<script setup lang="ts">
+  import TheWelcome from '../components/TheWelcome.vue'
+  import { ref, onMounted, watch } from 'vue'
+  import BaseButton from '@/components/Buttons/BaseButton.vue'
+  import BookCard from '@/components/BookCard.vue'
+  import { getFeaturedBooks, searchBooks, getCategories } from '@/service/bookService'
+  import type { Book } from '@/types/Book'
 
     const books = ref<Book[]>([])
     const categories = ref<string[]>([])
@@ -100,7 +97,10 @@ import TheWelcome from '../components/TheWelcome.vue'
       error.value = null
       try {
         if (query.value) {
-          books.value = await searchBooks({ q: query.value, category: activeCategory.value || undefined })
+          books.value = await searchBooks({
+            q: query.value,
+            category: activeCategory.value || undefined
+          })
         } else {
           await loadFeatured()
         }
@@ -129,7 +129,8 @@ import TheWelcome from '../components/TheWelcome.vue'
     onMounted(async () => {
       try {
         categories.value = await getCategories()
-      } catch { /* Kategorien sind optional */ }
+      } catch { /* Kategorien sind optional */
+      }
       await loadFeatured()
     })
 
@@ -138,7 +139,7 @@ import TheWelcome from '../components/TheWelcome.vue'
       if (query.value) onSearch()
       else loadFeatured()
     })
-  </script>
+</script>
 
   <style scoped>
     .page {
@@ -202,5 +203,3 @@ import TheWelcome from '../components/TheWelcome.vue'
       .hero { padding: 4rem 2rem; }
     }
   </style>
-
-</template>

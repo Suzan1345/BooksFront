@@ -1,5 +1,5 @@
 <template>
-  <BookList :books="books" />
+  <RouterView />
   <test />
 </template>
 

@@ -12,11 +12,13 @@
 
 <style scoped>
 .topnav {
+
   top : 0%;
-  color: #664e2f;
-  padding: 30px;
+  background-color: #664e2f;
+  padding: 18px;
   display: flex;
-  gap: 20px;
+  gap: 100px;
+  border-radius: 50px;
 }
 </style>
 

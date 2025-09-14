@@ -5,8 +5,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import BookList from './components/Booklist.vue'
-import test from '@/components/test.vue'
+
 
 const books = ref([])
 

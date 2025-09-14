@@ -1,8 +1,8 @@
 {
   "extends": "@tsconfig/node22/tsconfig.json",
   "include": [
-    "vite.config.*",
-    "vitest.config.*",
+    "vite.config.mts",
+    "vitest.config.mts",
     "cypress.config.*",
     "nightwatch.conf.*",
     "playwright.config.*",
@@ -13,6 +13,8 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "types": ["node"],
+    "allowImportingTsExtensions": true,
+
     "declaration": true,
     "emitDeclarationOnly": true,
     "outDir": "./node_modules/.tmp/ts-node-build",

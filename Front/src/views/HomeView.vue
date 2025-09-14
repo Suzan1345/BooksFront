@@ -9,3 +9,8 @@
 import Header from '@/components/Header.vue'
 import search from '@/views/search.vue'
 </script>
+
+<style scoped >
+
+
+</style>

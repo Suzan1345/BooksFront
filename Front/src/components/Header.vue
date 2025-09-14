@@ -1,20 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Header</title>
-</head>
-<body>
+<template>
+  <div class="topnav">
+    <RouterLink class="active" to="/">Home</RouterLink>
+    <RouterLink to="/search">Suche</RouterLink>
+  </div>
+</template>
 
-<div class="topnav">
-  <a class="active" href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-</div>
+<script setup>
+// kein TypeScript nötig, du kannst einfach JavaScript schreiben
+// Die Views brauchst du hier nicht zu importieren – die werden vom Router geladen
+</script>
 
-</body>
-</html>
+<style scoped>
+.topnav {
+  top : 0%;
+  color: #664e2f;
+  padding: 30px;
+  display: flex;
+  gap: 20px;
+}
+</style>
+
+

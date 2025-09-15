@@ -1,9 +1,9 @@
 <template>
 <Header/>
+<PlaceholderPic></PlaceholderPic>
 
 
 
-<img class="PLACEHOLDER" src='@/assets/pics/placeholder.png' />
   <img class="star" src='@/components/icons/starPL.png'/>
   <img class="pink" src='@/components/icons/pinkfolder.png'/>
 
@@ -12,7 +12,8 @@
 
 <script setup lang="ts">
 import Header from '@/components/Header.vue'
-import search from '@/views/search.vue'
+import search from '@/views/SearchView.vue'
+import PlaceholderPic from '@/components/PlaceholderPic.vue'
 
 // Typ: HTMLImageElement (speziell für <img>)
 const star = document.getElementById("star") as HTMLImageElement;
@@ -24,12 +25,7 @@ const star = document.getElementById("star") as HTMLImageElement;
 
 <style scoped >
 
-.PLACEHOLDER{
-  position: absolute;
-  top : 25%;
-  right : 25%;
-  height : 50vh;
-}
+
 
 .star{
   position: absolute;

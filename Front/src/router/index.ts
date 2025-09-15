@@ -22,6 +22,27 @@ const router = createRouter({
       name :'new-book',
       component :() => import('../views/NewBookView.vue')
     },
+    {
+      path : '/search',
+      name :'search',
+      component :() => import('../views/SearchView.vue')
+    },
+    {
+      path : '/listen',
+      name :'BuchListe',
+      component :() => import('../views/BooklistsView.vue')
+    },
+    {
+      path : '/genre',
+      name :'Genres',
+      component :() => import('../views/GenrelistsView.vue')
+    },
+    {
+      path : '/charts',
+      name :'Buchcharts',
+      component :() => import('../views/BookChartsView.vue')
+    },
+
   ],
 })
 

@@ -6,6 +6,7 @@
 <img class="PLACEHOLDER" src='@/assets/pics/placeholder.png' />
   <img class="star" src='@/components/icons/starPL.png'/>
   <img class="pink" src='@/components/icons/pinkfolder.png'/>
+
 </template>
 
 
@@ -13,6 +14,8 @@
 import Header from '@/components/Header.vue'
 import search from '@/views/search.vue'
 
+// Typ: HTMLImageElement (speziell für <img>)
+const star = document.getElementById("star") as HTMLImageElement;
 
 
 </script>
@@ -42,5 +45,7 @@ import search from '@/views/search.vue'
   left:  35%;
   height : 10vh;
 }
+
+
 
 </style>

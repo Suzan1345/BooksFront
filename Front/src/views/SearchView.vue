@@ -14,9 +14,7 @@
  </template>
 
  <script setup lang="ts">
- fetch("https://books-1-1ljs.onrender.com/books")
-   .then(res => res.json())
-   .then(data =>{})
+
 
 
 

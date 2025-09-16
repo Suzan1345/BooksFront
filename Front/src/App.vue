@@ -10,7 +10,7 @@ import { ref, onMounted } from 'vue'
 const books = ref([])
 
 onMounted(async () => {
-  const res = await fetch('https://books-1-1ljs.onrender.com/api/books')
+  const res = await fetch('https://books-1-1ljs.onrender.com/books')
   books.value = await res.json()
 })
 </script>

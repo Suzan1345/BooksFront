@@ -65,7 +65,10 @@ onMounted(async () => {
   try {
     const url = `${API_BASE}/books`
     console.log('GET', url)
-    const res = await fetch('/books', { headers: { Accept: 'application/json' } })
+    const res = await fetch('https://books-1-1ljs.onrender.com/books', {
+      headers: { Accept: 'application/json' },
+    })
+
     if (!res.ok) throw new Error(`HTTP ${res.status} – ${res.statusText}`)
     books.value = await res.json()
   } catch (e: any) {

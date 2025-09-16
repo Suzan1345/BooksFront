@@ -17,7 +17,9 @@
 
 
 <script setup lang="ts">
-import router from '@/router'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 function goToFantasy(){
   router.push('/fan');
@@ -53,6 +55,7 @@ function goToFremd(){
   router.push('/fremd');
 }
 import Header from '@/components/Header.vue'
+
 </script>
 
 

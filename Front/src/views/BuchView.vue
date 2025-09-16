@@ -1,19 +1,28 @@
-<!-- Inhalt -->
-<div v-else-if="book" class="content">
-<img v-if="book.cover" class="PLACEHOLDER" :src="book.cover" alt="Buchcover" />
+<template>
+  <Header />
 
-<div class="BNAME"><p>{{ book.title }}</p></div>
-<div class="ANAME"><p>{{ book.author }}</p></div>
-<div class="GNAME"><p>{{ book.genre }}</p></div>
-<div class="ISBN"><p>{{ book.isbn }}</p></div>
-<div class="BEW"><p>{{ book.rating }}/10</p></div>
-<div class="BESCH"><p>{{ book.description }}</p></div>
+  <section>
+    <div v-if="loading" style="padding:1rem">Lade Buch…</div>
+    <div v-else-if="error" style="padding:1rem; color:crimson">Fehler: {{ error }}</div>
 
-<!-- Debug: zeige die geladenen Rohdaten, hilft sofort beim Prüfen -->
-<pre style="margin-top:1rem; background:#f7f7f7; padding:.75rem; overflow:auto;">
+    <div v-else-if="book" class="content">
+      <img v-if="book.cover" class="PLACEHOLDER" :src="book.cover" alt="Buchcover" />
+
+      <div class="BNAME"><p>{{ book.title }}</p></div>
+      <div class="ANAME"><p>{{ book.author }}</p></div>
+      <div class="GNAME"><p>{{ book.genre }}</p></div>
+      <div class="ISBN"><p>{{ book.isbn }}</p></div>
+      <div class="BEW"><p>{{ book.rating }}/10</p></div>
+      <div class="BESCH"><p>{{ book.description }}</p></div>
+
+      <pre style="margin-top:1rem; background:#f7f7f7; padding:.75rem; overflow:auto;">
 {{ book }}
-  </pre>
-</div>
+      </pre>
+    </div>
+
+    <div v-else style="padding:1rem">Kein Buch gefunden.</div>
+  </section>
+</template>
 
 
 <script setup lang="ts">

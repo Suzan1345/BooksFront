@@ -20,21 +20,43 @@ const error = ref<string | null>(null)
 const book = ref<Book | null>(null)
 
 const route = useRoute()
-const id = route.params.id as string
+const id = route.params.id as string | undefined
 
-// OHNE API-Basis, aber prod braucht absolute URL:
+// Prod (Render) = absolute Backend-URL, lokal = leer (Proxy übernimmt)
 const isRender = typeof window !== 'undefined' && window.location.hostname.endsWith('onrender.com')
-const BACKEND = isRender
-  ? 'https://books-1-1ljs.onrender.com'    // <— DEINE Render-Backend-URL
-  : ''                                      // lokal über Proxy
+const BACKEND = isRender ? 'https://books-1-1ljs.onrender.com' : '' // <— DEINE Backend-URL
+
+async function fetchWithWake(url: string) {
+  // bis zu 3 Versuche (gut gegen Cold Starts)
+  for (let i = 0; i < 3; i++) {
+    const res = await fetch(url, { headers: { Accept: 'application/json' } })
+    if (res.ok) return res
+    if ([404].includes(res.status)) return res // 404 nicht retryen: klare Fehlermeldung zeigen
+    if ([502, 504].includes(res.status)) {
+      await new Promise(r => setTimeout(r, 1500))
+      continue
+    }
+    return res
+  }
+  throw new Error('Backend schläft noch oder ist nicht erreichbar.')
+}
 
 onMounted(async () => {
   try {
-    if (!id) throw new Error('Keine Buch-ID in der URL')
-
+    if (!id) throw new Error('Keine Buch-ID in der URL.')
     const url = `${BACKEND}/books/${encodeURIComponent(id)}`
-    const res = await fetch(url, { headers: { Accept: 'application/json' } })
-    if (!res.ok) throw new Error(`HTTP ${res.status} – ${res.statusText}`)
+    console.log('GET', url)
+
+    const res = await fetchWithWake(url)
+    console.log('Status', res.status)
+
+    if (res.status === 404) {
+      error.value = `Buch mit ID ${id} nicht gefunden (404).`
+      return
+    }
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status} – ${res.statusText}`)
+    }
 
     // Backend liefert: { id, title, author, genre, isbn, desch, rating }
     const api = await res.json() as {
@@ -52,12 +74,14 @@ onMounted(async () => {
       description: api.desch,
     }
   } catch (e: any) {
+    console.error(e)
     error.value = e?.message ?? 'Unbekannter Fehler beim Laden.'
   } finally {
     loading.value = false
   }
 })
 </script>
+
 
 
 <style scoped>

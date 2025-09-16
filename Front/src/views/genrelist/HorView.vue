@@ -54,7 +54,7 @@ async function fetchBooks() {
   // Bei Cold-Start/404 auf Render einmal kurz warten & nochmal probieren
   if (isRender && [404, 502, 504].includes(res.status)) {
     await new Promise(r => setTimeout(r, 1200))
-    res = await fetch(`${BASE}/books`, { headers: { Accept: 'application/json' } })
+    let res = await fetch(`${BASE}/books`, { headers: { Accept: 'application/json' } })
     if (res.ok) return res.json()
   }
 

@@ -2,35 +2,101 @@
 <Header>
 
 </Header>
-  <form action="/submit" method="post">
-    <label for="name"class="NAME">Name:</label>
-    <input type="text" id="name" name="Buchname" class="Buchname">
+  <form @submit.prevent="onSubmit">
+    <!-- Feld für Name -->
+    <label for="name" class="NAME">Name:</label>
+    <input type="text" id="name" v-model="form.name" class="Buchname" />
 
+    <!-- Feld für Autor -->
     <label for="author" class="AUTOR">Autor</label>
-    <input type="text" id="author" name="Autorenname" class="Autorenname">
+    <input type="text" id="author" v-model="form.author" class="Autorenname" />
 
-    <label for="genre" class="GENRE ">Genre</label>
-    <input type="text" id="genre" name="GenreName" class="Genrename">
+    <!-- Feld für Genre -->
+    <label for="genre" class="GENRE">Genre</label>
+    <input type="text" id="genre" v-model="form.genre" class="Genrename" />
 
+    <!-- Feld für ISBN -->
     <label for="isbn" class="ISBNNAME">ISBN</label>
-    <input type="text" id="isbn" name="ISBN" class="ISBNname">
+    <input type="text" id="isbn" v-model="form.isbn" class="ISBNname" />
 
-    <label for="beschreibung"class="BESCHR">Beschreibung</label><br>
-    <textarea id="beschreibung" name="beschreibung" class="Beschreibung" rows="15" cols="60"></textarea>
+    <!-- Feld für Beschreibung -->
+    <label for="beschreibung" class="BESCHR">Beschreibung</label><br />
+    <textarea id="beschreibung" v-model="form.desc" class="Beschreibung" rows="15" cols="60"></textarea>
 
+    <!-- Feld für Bewertung -->
     <label for="Bewertung" class="BEW">Bewertung</label>
-    <input type="number" name="Bewertung" class="Bew">
+    <input type="number" id="Bewertung" v-model.number="form.rating" class="Bew" />
 
-
-
-    <button class="Erstellen" type="submit">Erstellen </button>
+    <!-- Button -->
+    <button class="Erstellen" type="submit" :disabled="loading">
+      {{ loading ? 'Erstelle…' : 'Erstellen' }}
+    </button>
   </form>
+
   <PlaceholderPic></PlaceholderPic>
 </template>
 
 
 <script setup lang="ts">
+import { ref, reactive } from 'vue'
 
+const API_BASE = import.meta.env.VITE_API_BASE ?? 'https://books-1-1ljs.onrender.com/books' // 🔁 anpassen
+
+const form = reactive({
+  name: '',
+  author: '',
+  genre: '',
+  isbn: '',
+  desc: '',
+  rating: undefined as number | undefined,
+})
+
+const loading = ref(false)
+const showPopup = ref(false)
+const error = ref<string | null>(null)
+
+async function onSubmit() {
+  error.value = null
+  loading.value = true
+  try {
+    const res = await fetch(`${API_BASE}/api/books`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      // wenn Cookies/Session nötig: credentials: 'include',
+      body: JSON.stringify({
+        name: form.name,
+        author: form.author,
+        genre: form.genre,
+        isbn: form.isbn,
+        description: form.desc,
+        rating: form.rating,
+      }),
+    })
+
+    if (!res.ok) {
+      const msg = await safeText(res)
+      throw new Error(`${res.status} ${res.statusText}${msg ? ` – ${msg}` : ''}`)
+    }
+
+    // Erfolg
+    showPopup.value = true
+    // optional: Felder leeren
+    Object.assign(form, { name: '', author: '', genre: '', isbn: '', desc: '', rating: undefined })
+    // optional: nach X Sekunden weiterleiten:
+    // setTimeout(() => router.push('/books'), 1200)
+  } catch (e:any) {
+    error.value = e.message ?? 'Unbekannter Fehler'
+  } finally {
+    loading.value = false
+  }
+}
+
+function closeFn() { showPopup.value = false }
+
+// Hilfsfunktion: Antwort sicher lesen
+async function safeText(res: Response) {
+  try { return (await res.text()).slice(0, 300) } catch { return '' }
+}
 
 import Header from '@/components/Header.vue'
 import PlaceholderPic from '@/components/PlaceholderPic.vue'
@@ -104,6 +170,29 @@ position: absolute;
   position: absolute;
   left:60%;
   top:75%;
+}
+
+#popUpD{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+#overlay{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 </style>

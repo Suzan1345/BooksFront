@@ -50,7 +50,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? 'https://books-1-1ljs.onrender.com/books' // 🔁 anpassen
+const API_BASE = import.meta.env.VITE_API_BASE ?? 'https://books-1-1ljs.onrender.com' // 🔁 anpassen
 
 const form = reactive({
   name: '',

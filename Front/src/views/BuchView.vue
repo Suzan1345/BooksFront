@@ -1,3 +1,21 @@
+<!-- Inhalt -->
+<div v-else-if="book" class="content">
+<img v-if="book.cover" class="PLACEHOLDER" :src="book.cover" alt="Buchcover" />
+
+<div class="BNAME"><p>{{ book.title }}</p></div>
+<div class="ANAME"><p>{{ book.author }}</p></div>
+<div class="GNAME"><p>{{ book.genre }}</p></div>
+<div class="ISBN"><p>{{ book.isbn }}</p></div>
+<div class="BEW"><p>{{ book.rating }}/10</p></div>
+<div class="BESCH"><p>{{ book.description }}</p></div>
+
+<!-- Debug: zeige die geladenen Rohdaten, hilft sofort beim Prüfen -->
+<pre style="margin-top:1rem; background:#f7f7f7; padding:.75rem; overflow:auto;">
+{{ book }}
+  </pre>
+</div>
+
+
 <script setup lang="ts">
 import Header from '@/components/Header.vue'
 import { ref, onMounted } from 'vue'

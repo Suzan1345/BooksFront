@@ -185,7 +185,7 @@ const router = createRouter({
     {
       path : '/love',
       name :'love',
-      component :() => import('../views/genrelist/Love.vue')
+      component :() => import('../views/genrelist/LoveView.vue')
     },
     {
       path : '/sci',

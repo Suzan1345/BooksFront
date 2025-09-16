@@ -57,7 +57,7 @@ const form = reactive({
   author: '',
   genre: '',
   isbn: '',
-  desc: '',
+  desch: '',
   rating: undefined as number | undefined,
 })
 
@@ -78,7 +78,7 @@ async function onSubmit() {
         author: form.author,
         genre: form.genre,
         isbn: Number(form.isbn),
-        desc: form.desc,
+        desc: form.desch,
         rating: Number(form.rating),
       }),
     })
@@ -91,7 +91,7 @@ async function onSubmit() {
     // Erfolg
     showPopup.value = true
     // optional: Felder leeren
-    Object.assign(form, { name: '', author: '', genre: '', isbn: '', desc: '', rating: undefined })
+    Object.assign(form, { name: '', author: '', genre: '', isbn: '', desch: '', rating: undefined })
     // optional: nach X Sekunden weiterleiten:
     // setTimeout(() => router.push('/books'), 1200)
   } catch (e:any) {

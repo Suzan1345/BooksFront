@@ -21,7 +21,7 @@
 
     <!-- Feld für Beschreibung -->
     <label for="beschreibung" class="BESCHR">Beschreibung</label><br />
-    <textarea id="beschreibung" v-model="form.desc" class="Beschreibung" rows="15" cols="60"></textarea>
+    <textarea id="beschreibung" v-model="form.desch" class="Beschreibung" rows="15" cols="60"></textarea>
 
     <!-- Feld für Bewertung -->
     <label for="Bewertung" class="BEW">Bewertung</label>

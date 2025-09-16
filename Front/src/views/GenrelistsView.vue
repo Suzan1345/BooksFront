@@ -13,11 +13,58 @@
   <RouterLink class="Psych"    to="/psy">Psychologische Bücher</RouterLink>
   <RouterLink class="Sach"     to="/sach">Sachbücher</RouterLink>
   <RouterLink class="Fremd"    to="/fremd">Fremdsprachen</RouterLink>
+
+
 </template>
 
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import PlaceholderPic from '@/components/PlaceholderPic.vue'
+import { ref, onMounted } from 'vue'
+
+type Book = {
+  id: number
+  title: string
+  author: string
+  genre: string
+  isbn: number
+  desch: string
+  rating: number
+}
+
+const loading = ref(true)
+const error = ref<string | null>(null)
+const books = ref<Book[]>([])
+
+/**
+ * Minimal: lokal per Proxy '/books'
+ * In Prod (Render) brauchst du die volle Backend-URL.
+ * => Für den Test: wenn Host auf onrender endet, nutze deine Backend-URL.
+ * (Das ist KEINE "API-Basis", nur ein if – super simpel.)
+ */
+const API_BASE =
+  (typeof window !== 'undefined' && window.location.hostname.endsWith('onrender.com'))
+    ? 'https://books-1-1ljs.onrender.com' // <-- HIER deine Render-Backend-URL einsetzen
+    : ''
+
+onMounted(async () => {
+  try {
+    const url = `${API_BASE}/books`
+    console.log('GET', url)
+    const res = await fetch('https://books-1-1ljs.onrender.com/books', {
+      headers: { Accept: 'application/json' },
+    })
+
+    if (!res.ok) throw new Error(`HTTP ${res.status} – ${res.statusText}`)
+    books.value = await res.json()
+  } catch (e: any) {
+    console.error('Fehler beim Laden der Bücher:', e)
+    error.value = e?.message ?? 'Unbekannter Fehler'
+  } finally {
+    loading.value = false
+  }
+})
 
 const router = useRouter();
 

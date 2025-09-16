@@ -17,7 +17,7 @@
 
     <!-- Feld für ISBN -->
     <label for="isbn" class="ISBNNAME">ISBN</label>
-    <input type="text" id="isbn" v-model="form.isbn" class="ISBNname" />
+    <input type="number" id="isbn" v-model.number="form.isbn" class="ISBNname" />
 
     <!-- Feld für Beschreibung -->
     <label for="beschreibung" class="BESCHR">Beschreibung</label><br />

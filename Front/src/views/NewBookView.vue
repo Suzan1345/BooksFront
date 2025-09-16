@@ -78,7 +78,7 @@ async function onSubmit() {
         author: form.author,
         genre: form.genre,
         isbn: Number(form.isbn),
-        desc: form.desch,
+        desch: form.desch,
         rating: Number(form.rating),
       }),
     })

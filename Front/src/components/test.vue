@@ -20,7 +20,7 @@ export default {
 
     const submitBook = async (): Promise<void> => {
       try {
-        const response = await fetch('https://books-1-1ljs.onrender.com/api/books', {
+        const response = await fetch('https://books-1-1ljs.onrender.comF/books', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -58,7 +58,7 @@ const books = ref<Book[]>([])
  */
 const API_BASE =
   (typeof window !== 'undefined' && window.location.hostname.endsWith('onrender.com'))
-    ? 'https://DEIN-BACKEND.onrender.com' // <-- HIER deine Render-Backend-URL einsetzen
+    ? 'https://books-1-1ljs.onrender.com' // <-- HIER deine Render-Backend-URL einsetzen
     : ''
 
 onMounted(async () => {

@@ -69,17 +69,17 @@ async function onSubmit() {
   error.value = null
   loading.value = true
   try {
-    const res = await fetch(`${API_BASE}/api/books`, {
+    const res = await fetch(`${API_BASE}/books`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       // wenn Cookies/Session nötig: credentials: 'include',
       body: JSON.stringify({
-        name: form.name,
+        title: form.name,
         author: form.author,
         genre: form.genre,
-        isbn: form.isbn,
-        description: form.desc,
-        rating: form.rating,
+        isbn: Number(form.isbn),
+        desc: form.desc,
+        rating: Number(form.rating),
       }),
     })
 
@@ -183,7 +183,7 @@ position: absolute;
 }
 
 #popUpD{
-  display: none;
+
   position: fixed;
   top: 50%;
   left: 50%;
@@ -195,7 +195,7 @@ position: absolute;
   z-index: 1000;
 }
 #overlay{
-  display: none;
+
   position: fixed;
   top: 0;
   left: 0;

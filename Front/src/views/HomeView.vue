@@ -1,47 +1,100 @@
 <template>
-<Header/>
-<PlaceholderPic></PlaceholderPic>
+  <Header />
+  <PlaceholderPic />
 
+  <div v-if="loading" style="padding:1rem">Lade Bücher…</div>
+  <div v-else-if="error" style="padding:1rem; color:crimson">
+    Fehler: {{ error }}
+  </div>
 
+  <template v-else>
+    <p style="margin: .5rem 0; color:#666">
+      Gefundene Bücher: {{ books.length }}
+    </p>
 
-  <img class="star" src='@/components/icons/starPL.png'/>
-  <img class="pink" src='@/components/icons/pinkfolder.png'/>
+    <ul class="books-list">
+      <li v-if="!books.length" style="color:#777">
+        Kein Buch gefunden. (Hast du schon eins angelegt?)
+      </li>
 
+      <li v-for="b in books" :key="b.id">
+        <RouterLink :to="{ name: 'Buch', params: { id: b.id } }">
+          {{ b.title }} – {{ b.author }}
+        </RouterLink>
+      </li>
+    </ul>
+
+    <!-- Debug-Block: zeigt dir die Rohdaten -->
+    <pre style="margin-top:1rem; background:#f7f7f7; padding:.75rem; overflow:auto;">
+{{ books }}
+    </pre>
+  </template>
 </template>
-
 
 <script setup lang="ts">
 import Header from '@/components/Header.vue'
-import search from '@/views/SearchView.vue'
 import PlaceholderPic from '@/components/PlaceholderPic.vue'
+import { ref, onMounted } from 'vue'
 
-// Typ: HTMLImageElement (speziell für <img>)
-const star = document.getElementById("star") as HTMLImageElement;
+type Book = {
+  id: number
+  title: string
+  author: string
+  genre: string
+  isbn: number
+  desch: string
+  rating: number
+}
 
+const loading = ref(true)
+const error = ref<string | null>(null)
+const books = ref<Book[]>([])
 
+/**
+ * Minimal: lokal per Proxy '/books'
+ * In Prod (Render) brauchst du die volle Backend-URL.
+ * => Für den Test: wenn Host auf onrender endet, nutze deine Backend-URL.
+ * (Das ist KEINE "API-Basis", nur ein if – super simpel.)
+ */
+const API_BASE =
+  (typeof window !== 'undefined' && window.location.hostname.endsWith('onrender.com'))
+    ? 'https://DEIN-BACKEND.onrender.com' // <-- HIER deine Render-Backend-URL einsetzen
+    : ''
+
+onMounted(async () => {
+  try {
+    const url = `${API_BASE}/books`
+    console.log('GET', url)
+    const res = await fetch('/books', { headers: { Accept: 'application/json' } })
+    if (!res.ok) throw new Error(`HTTP ${res.status} – ${res.statusText}`)
+    books.value = await res.json()
+  } catch (e: any) {
+    console.error('Fehler beim Laden der Bücher:', e)
+    error.value = e?.message ?? 'Unbekannter Fehler'
+  } finally {
+    loading.value = false
+  }
+})
 </script>
 
 
+<style scoped>
+.books-list { position: relative; z-index: 1; }
 
-<style scoped >
-
-
-
-.star{
+/* Falls irgendwas (z.B. absolut positionierte Bilder) die Links überdeckt: */
+a { position: relative; z-index: 2; }
+/* deine Styles */
+.star {
   position: absolute;
-  top : 40%;
-  left:  35%;
-  height : 10vh;
-
+  top: 40%;
+  left: 35%;
+  height: 10vh;
 }
 
-.pink{
+.pink {
   position: absolute;
-  top : 50%;
-  left:  35%;
-  height : 10vh;
+  top: 50%;
+  left: 35%;
+  height: 10vh;
 }
-
-
-
 </style>

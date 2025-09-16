@@ -15,4 +15,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server: {
+    proxy: {
+      server: {
+        proxy: {
+          '/books': { target: 'http://localhost:8081', changeOrigin: true },
+        },
+      },
+    },
+  },
 })

@@ -2,17 +2,17 @@
   <Header>
 
   </Header>
-  <a href="Fantasy" class="Fantasy" @click="goToFantasy">Fantasy - Bücher</a>
-  <a href="SciFi" class="SciFi" @click="goToSci">Sciencefiction - Bücher</a>
-  <a href="Love" class="Love" @click="goToLove">Liebesromane</a>
-  <a href="Family" class="Famliy" @click="goToFamily">Familienromane</a>
-  <a href="Abenteuer" class="Abenteuer" @click="goToAben">Abendteuerromane</a>
-  <a href="Historisch" class="Historisch" @click="goToHist">Historische Romane/ Klassiker</a>
-  <a href="Thriller" class="Thriller" @click="goToThriller">Thriller-Bücher</a>
-  <a href="Horror" class="Horror" @click="goToHorror">Horrorbücher </a>
-  <a href="Psychologisch" class="Psych" @click="goToPsy">Psychologische Bücher</a>
-  <a href="Sachbücher" class="Sach" @click="goToSach">Sachbücher</a>
-  <a href="Fremdsprachen" class="Fremd" @click="goToFremd">Fremdpsrachen</a>
+  <RouterLink class="Fantasy" to="/fan">Fantasy - Bücher</RouterLink>
+  <RouterLink class="SciFi"   to="/sci">Sciencefiction - Bücher</RouterLink>
+  <RouterLink class="Love"    to="/love">Liebesromane</RouterLink>
+  <RouterLink class="Famliy"  to="/fami">Familienromane</RouterLink>
+  <RouterLink class="Abenteuer" to="/aben">Abenteuerromane</RouterLink>
+  <RouterLink class="Historisch" to="/hist">Historische Romane / Klassiker</RouterLink>
+  <RouterLink class="Thriller" to="/thri">Thriller-Bücher</RouterLink>
+  <RouterLink class="Horror"   to="/hor">Horrorbücher</RouterLink>
+  <RouterLink class="Psych"    to="/psy">Psychologische Bücher</RouterLink>
+  <RouterLink class="Sach"     to="/sach">Sachbücher</RouterLink>
+  <RouterLink class="Fremd"    to="/fremd">Fremdsprachen</RouterLink>
 </template>
 
 

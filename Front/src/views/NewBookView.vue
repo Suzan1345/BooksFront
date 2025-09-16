@@ -31,6 +31,16 @@
     <button class="Erstellen" type="submit" :disabled="loading">
       {{ loading ? 'Erstelle…' : 'Erstellen' }}
     </button>
+
+    <!-- Overlay -->
+    <div id="overlay" v-show="showPopup" @click="closeFn"></div>
+
+    <!-- Dialog -->
+    <div id="popUpD" v-show="showPopup" role="dialog" aria-modal="true">
+      <p>Du hast das Buch hinzugefügt!</p>
+      <button type="button" @click="closeFn">Zurück</button>
+    </div>
+
   </form>
 
   <PlaceholderPic></PlaceholderPic>

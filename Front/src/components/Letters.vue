@@ -1,4 +1,5 @@
 <template>
+  <Header></Header>
   <section class="wrap">
     <h2 class="title">Bücher mit „{{ letter }}“</h2>
 
@@ -18,6 +19,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import Header from '@/components/Header.vue'
 
 type Book = {
   id: number | string

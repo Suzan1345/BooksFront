@@ -3,11 +3,15 @@
 
   <div class="Welcome">
     <h1>Durchstöbere die ganzen Bücher!</h1>
-    <p>Herzlichen willkommen auf meiner Website!</p>
+    <div class="inhalt">
+
+    <p>Herzlichen willkommen auf meiner Website!
+       </p>
     <p>Hier findest du Bücher, ihre Beschreibungen und ihre Bewertungen.</p>
     <p>Du kannst sogar selber welche anlegen!</p>
-    <p>Um anzufangen, klicke auf den Reiter link.</p>
+    <p>Um anzufangen, klicke auf den Reiter links.</p>
     <p> <---- </p>
+    </div>
   </div>
 
 <!--
@@ -93,29 +97,19 @@ onMounted(async () => {
 
 
 <style scoped>
-.books-list { position: relative; z-index: 1; }
+
 
 /* Falls irgendwas (z.B. absolut positionierte Bilder) die Links überdeckt: */
 a { position: relative; z-index: 2; }
-/* deine Styles */
-.star {
-  position: absolute;
-  top: 40%;
-  left: 35%;
-  height: 10vh;
-}
 
-.pink {
-  position: absolute;
-  top: 50%;
-  left: 35%;
-  height: 10vh;
-}
 .Welcome{
+  font-family: "Times New Roman";
 position: absolute;
   top:30%;
   left:500px;
   z-index: 1;
+  font-size: 100%;
+  color: #664e2f;
 
 }
 .books{
@@ -123,6 +117,10 @@ position: absolute;
   top: 30%;
   right:19%;
   width: 70vh;
+}
+.inhalt{
+  font-family: "Times New Roman";
+  font-size: 150%;
 }
 
 </style>

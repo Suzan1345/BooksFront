@@ -84,5 +84,10 @@ const filtered = computed(() =>
 </script>
 
 <style scoped>
-
+.wrap{
+  position: absolute;
+  top:23%;
+  left:27%;
+  color: #664e2f;
+}
 </style>

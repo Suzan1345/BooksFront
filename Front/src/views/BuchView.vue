@@ -1,27 +1,47 @@
 <template>
   <Header />
 
-  <section>
-    <div v-if="loading" style="padding:1rem">Lade Buch…</div>
-    <div v-else-if="error" style="padding:1rem; color:crimson">Fehler: {{ error }}</div>
+  <section v-if="book" class="book-details">
 
-    <div v-else-if="book" class="content">
-      <img v-if="book.cover" class="PLACEHOLDER" :src="book.cover" alt="Buchcover" />
-
-      <div class="BNAME"><p>{{ book.title }}</p></div>
-      <div class="ANAME"><p>{{ book.author }}</p></div>
-      <div class="GNAME"><p>{{ book.genre }}</p></div>
-      <div class="ISBN"><p>{{ book.isbn }}</p></div>
-      <div class="BEW"><p>{{ book.rating }}/10</p></div>
-      <div class="BESCH"><p>{{ book.description }}</p></div>
-
-
-
+    <div class="BNAME">
+      <h2 class="buchtitel">Buchtitel:</h2>
+      <p>{{ book.title }}</p>
     </div>
 
-    <div v-else style="padding:1rem">Kein Buch gefunden.</div>
+    <div class="ANAME">
+      <h2 class="Autor">Autor:</h2>
+      <p>{{ book.author }}</p>
+    </div>
+
+    <div class="GNAME">
+      <h2 class="Genre">Genre:</h2>
+      <p>{{ book.genre }}</p>
+    </div>
+
+    <div class="ISBN">
+      <h2 class="ISBN-Label">ISBN:</h2>
+      <p>{{ book.isbn }}</p>
+    </div>
+
+    <div class="BEW">
+      <h2 class="Bewe">Bewertung:</h2>
+      <p>{{ book.rating }}/10</p>
+    </div>
+
+    <div class="BESCH">
+      <h2 class="besch">Beschreibung:</h2>
+      <p>{{ book.desch }}</p>
+    </div>
+
   </section>
+
+  <div v-else-if="loading" class="info">Lade Buch…</div>
+  <div v-else-if="error" class="error">⚠️ {{ error }}</div>
+  <div v-else class="info">Kein Buch gefunden.</div>
 </template>
+
+
+
 
 <script setup lang="ts">
 import Header from '@/components/Header.vue'
@@ -35,7 +55,7 @@ type Book = {
   genre: string
   isbn: number
   rating: number
-  description: string
+  desch: string
   cover?: string
   comments?: string[]
 }
@@ -102,7 +122,7 @@ onMounted(async (): Promise<void> => {
       genre: api.genre,
       isbn: api.isbn,
       rating: api.rating,
-      description: api.desch, // Backend-Feldname "desch"
+      desch: api.desch, // Backend-Feldname "desch"
       cover: api.cover,
       comments: api.comments ?? []
     }
@@ -117,15 +137,21 @@ onMounted(async (): Promise<void> => {
 </script>
 
 <style scoped>
-.BNAME{ position: absolute; left:28%; top:30%; }
-.ANAME{ position: absolute; left:28%; top:42%; }
-.GNAME{ position: absolute; left:28%; top:53%; }
-.ISBN{ position: absolute; left:28%; top:64%; }
-.BEW{  position: absolute; left:28%; top:75%; }
-.BESCH{ position: absolute; left:35%; top:35%; }
-.Kommentare{ position: absolute; left:20%; top:79%; }
+.BNAME{ position: absolute; left:28%; top:23%; color: #664e2f}
+.ANAME{ position: absolute; left:28%; top:35%;color: #664e2f }
+.GNAME{ position: absolute; left:28%; top:48%; color: #664e2f}
+.ISBN{ position: absolute; left:28%; top:61%;color: #664e2f }
+.BEW{  position: absolute; left:28%; top:72%; color: #664e2f }
+.BESCH{ position: absolute; left:50%; top:23%;color: #664e2f }
+.Kommentare{ position: absolute; left:20%; top:79%;color: #664e2f }
 @media (max-width: 900px) {
 
+.buchtitel{position: absolute; left:70px;top:17%}
+.Autor{position: absolute; left:28%; top:25%}
+.Genre{position: absolute;left:28%;top:23%}
+.ISBN{}
+.Bewe{}
+.besch{}
 }
 
 </style>

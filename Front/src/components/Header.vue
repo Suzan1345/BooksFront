@@ -1,11 +1,12 @@
 <template>
   <img class="header" src='@/assets/pics/leiste.png'>
-  <img class="plus" src='@/assets/pics/plus.png'@click="goToNewBook">
-  <img class="search" src='@/assets/pics/search.png'@click="goToSearch">
-  <img class="list" src='@/assets/pics/list.png'@click="goToList">
-  <img class="genre" src='@/assets/pics/Genre.png'@click="goToGenre">
-  <img class="charts" src='@/assets/pics/charts.png'@click="goToCharts">
-  <img class="home" src='@/assets/pics/home.png'@click="goToHome">
+  <img class="plus" src='@/assets/pics/plusi.png'@click="goToNewBook">
+  <img class="search" src='@/assets/pics/searchhh.png'@click="goToSearch">
+  <img class="home" src='@/assets/pics/start.png'@click="goToHome">
+  <img class="genre" src='@/assets/pics/listen.png'@click="goToGenre">
+  <img class="charts" src='@/assets/pics/pod.png'@click="goToCharts">
+
+  <img  class="back" src="@/assets/pics/background.png">
 
 </template>
 
@@ -40,44 +41,53 @@
 .header{
   position: absolute;
   top:20%;
-  left:-18%;
+  left:-25%;
   width:70vh;
+  z-index: 0;
 }
 .plus{
   position: absolute;
-  top:30%;
-  left:57px;
-  width:8vh;
+  top:34%;
+  left:1%;
+  width:6vh;
+  z-index:1;
+  cursor: pointer;
+
+
 }
 .search{
   position: absolute;
-  top:40%;
-  left:90px;
-  width:8vh;
+  top:43%;
+  left:3%;
+  width:6vh;
+  cursor: pointer;
 }
-.list{
+.home{
   position: absolute;
-  top:50%;
-  left:100px;
-  width:8vh;
+  top:51%;
+  left:4%;
+  width:6vh;
+  cursor: pointer;
 }
 .genre{
   position: absolute;
   top:60%;
-  left:90px;
-  width:8vh;
+  left:3%;
+  width:6vh;
+  cursor: pointer;
 }
 .charts{
   position: absolute;
-  top:70%;
-  left:57px;
-  width:8vh;
+  top:68%;
+  left:1%;
+  width:6vh;
+  cursor: pointer;
 }
-.home{
+.back{
   position: absolute;
-  top:50%;
-  left:25px;
-  width: 8vh;
+  top:10%;
+  left:15%;
+  z-index: 0;
 }
 
 </style>

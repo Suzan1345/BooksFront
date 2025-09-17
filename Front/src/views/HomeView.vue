@@ -1,7 +1,16 @@
 <template>
   <Header />
   <PlaceholderPic />
+  <div class="Welcome">
+    <h1>Durchstöbere die ganzen Bücher!</h1>
+    <p>Herzlichen willkommen auf meiner Website!</p>
+    <p>Hier findest du Bücher, ihre Beschreibungen und ihre Bewertungen.</p>
+    <p>Du kannst sogar selber welche anlegen!</p>
+    <p>Um anzufangen, klicke auf den Reiter link.</p>
+    <p> <---- </p>
+  </div>
 
+<!--
   <div v-if="loading" style="padding:1rem">Lade Bücher…</div>
   <div v-else-if="error" style="padding:1rem; color:crimson">
     Fehler: {{ error }}
@@ -22,20 +31,21 @@
           {{ b.title }} – {{ b.author }}
         </RouterLink>
       </li>
-    </ul>
+    </ul>  -->
 
-    <!-- Debug-Block: zeigt dir die Rohdaten -->
+    <!-- Debug-Block: zeigt dir die Rohdaten
     <pre style="margin-top:1rem; background:#f7f7f7; padding:.75rem; overflow:auto;">
 {{ books }}
     </pre>
-  </template>
+  </template>-->
+
 </template>
 
 <script setup lang="ts">
 import Header from '@/components/Header.vue'
 import PlaceholderPic from '@/components/PlaceholderPic.vue'
 import { ref, onMounted } from 'vue'
-
+/**
 type Book = {
   id: number
   title: string
@@ -50,12 +60,12 @@ const loading = ref(true)
 const error = ref<string | null>(null)
 const books = ref<Book[]>([])
 
-/**
+
  * Minimal: lokal per Proxy '/books'
  * In Prod (Render) brauchst du die volle Backend-URL.
  * => Für den Test: wenn Host auf onrender endet, nutze deine Backend-URL.
  * (Das ist KEINE "API-Basis", nur ein if – super simpel.)
- */
+
 const API_BASE =
   (typeof window !== 'undefined' && window.location.hostname.endsWith('onrender.com'))
     ? 'https://books-1-1ljs.onrender.com' // <-- HIER deine Render-Backend-URL einsetzen
@@ -77,7 +87,7 @@ onMounted(async () => {
   } finally {
     loading.value = false
   }
-})
+})**/
 </script>
 
 
@@ -100,4 +110,12 @@ a { position: relative; z-index: 2; }
   left: 35%;
   height: 10vh;
 }
+.Welcome{
+position: absolute;
+  top:30%;
+  left:500px;
+  z-index: 1;
+
+}
+
 </style>

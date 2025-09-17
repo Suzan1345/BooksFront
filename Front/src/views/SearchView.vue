@@ -2,11 +2,12 @@
   <div class="page">
     <Header />
 
-    <h1>Keine Bücher gefunden!</h1>
+    <h1 class="Über">Suche:</h1>
+
 
     <!-- Suche -->
     <form @submit.prevent="onSubmit">
-      <label for="suche" class="SUCHE">Suche:</label>
+      <label for="suche" class="SUCHE"></label>
       <input
         type="text"
         id="suche"
@@ -14,15 +15,17 @@
         v-model="form.name"
         placeholder="Buchtitel"
       />
-      <button type="submit" :disabled="loading">
+      <button class="search" type="submit" :disabled="loading">
         {{ loading ? 'Lade…' : 'Suchen' }}
       </button>
     </form>
 
-    <ul class="books-list">
+
+
+    <ul class="books-list"> <!--
       <li v-if="!loading && !error && books.length === 0" style="color:#777">
         Kein Buch gefunden. (Hast du schon eins angelegt?)
-      </li>
+      </li> -->
 
       <li v-for="b in books" :key="b.id">
         <RouterLink :to="{ name: 'Buch', params: { id: b.id } }">
@@ -30,14 +33,14 @@
         </RouterLink>
       </li>
     </ul>
-
+    </div>
     <!-- Beispiel: Erstellen (POST) -->
     <button class="Erstellen" type="button" @click="createBook" :disabled="loading">
       {{ loading ? 'Speichere…' : 'Erstellen' }}
     </button>
 
     <p v-if="error" class="error">⚠️ {{ error }}</p>
-  </div>
+
 </template>
 
 <script setup lang="ts">
@@ -127,6 +130,7 @@ async function createBook() {
 
 
 <style scoped>
+
  .text{
    position: absolute;
    top: 30%;
@@ -134,8 +138,38 @@ async function createBook() {
  }
  .Erstellen{
    position: absolute;
-   top:30%;
-   left:30%
+   top:70%;
+   left:30%;
+   background-color: #bd9f3e;
+   border-radius: 20%;
+   padding: 1%;
+   border-color: #bd9f3e;
+   cursor: pointer;
+ }
+ .Über{
+   position: absolute;
+   top:25%;
+   left:30%;
+   color: #664e2f;
+ }
+
+
+ .suche{
+   position: absolute;
+   top:40%;
+   left:30%;
+   border-radius: 10%;
+
+ }
+ .search{
+   position:absolute;
+   top:50%;
+   left:30%;
+   background-color: #bd9f3e;
+   border-radius: 20%;
+   padding: 1%;
+   border-color: #bd9f3e;
+   cursor: pointer;
  }
 
 

@@ -123,101 +123,101 @@ import Header from '@/components/Header.vue'
 <style scoped>
 .ANAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:25%;
 }
 .BNAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:30%;
 }
 .CNAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:35%;
 }
 .DNAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:40%;
 }
 .ENAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:45%;
 }
 .FNAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:50%;
 }
 .GNAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:55%;
 }
 .HNAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:60%;
 }
 .INAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:65%;
 }
 .JNAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:70%;
 }
 .KNAME{position: absolute;
-  left:20%;
+  left:28%;
   top:75%;}
 .LNAME{position: absolute;
-  left:35%;
+  left:40%;
   top:25%;}
 .MNAME{position: absolute;
-  left:35%;
+  left:40%;
   top:30%;}
 .NNAME{position: absolute;
-  left:35%;
+  left:40%;
   top:35%;}
 .ONAME{position: absolute;
-  left:35%;
+  left:40%;
   top:40%;}
 .PNAME{position: absolute;
-  left:35%;
+  left:40%;
   top:45%;}
 .QNAME{position: absolute;
-  left:35%;
+  left:40%;
   top:50%;}
 .RNAME{position: absolute;
-  left:35%;
+  left:40%;
   top:55%;}
 .SNAME{position: absolute;
-  left:35%;
+  left:40%;
   top:60%;}
 .TNAME{position: absolute;
-  left:35%;
+  left:40%;
   top:65%;}
 .UNAME{position: absolute;
-  left:35%;
+  left:40%;
   top:70%;}
 .VNAME{position: absolute;
-  left:35%;
+  left:40%;
   top:75%;}
 .WNAME{position: absolute;
-  left:50%;
+  left:54%;
   top:25%;}
 .XNAME{position: absolute;
-  left:50%;
+  left:54%;
   top:30%;}
 .YNAME{position: absolute;
-  left:50%;
+  left:54%;
   top:35%;}
 .ZNAME{position: absolute;
-  left:50%;
+  left:54%;
   top:40%;}
 
 

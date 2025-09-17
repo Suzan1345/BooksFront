@@ -4,7 +4,7 @@
   <img class="search" src='@/assets/pics/searchhh.png'@click="goToSearch">
   <img class="home" src='@/assets/pics/start.png'@click="goToHome">
   <img class="genre" src='@/assets/pics/listen.png'@click="goToGenre">
-  <img class="charts" src='@/assets/pics/pod.png'@click="goToCharts">
+  <img class="listen" src='@/assets/pics/pen.png'@click="goToList">
 
   <img  class="back" src="@/assets/pics/background.png">
 
@@ -76,7 +76,7 @@
   width:6vh;
   cursor: pointer;
 }
-.charts{
+.listen{
   position: absolute;
   top:68%;
   left:1%;

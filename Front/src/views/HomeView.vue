@@ -1,6 +1,6 @@
 <template>
   <Header />
-  <PlaceholderPic />
+
   <div class="Welcome">
     <h1>Durchstöbere die ganzen Bücher!</h1>
     <p>Herzlichen willkommen auf meiner Website!</p>

@@ -43,7 +43,7 @@
 
   </form>
 
-  <PlaceholderPic></PlaceholderPic>
+
 </template>
 
 
@@ -117,68 +117,68 @@ import PlaceholderPic from '@/components/PlaceholderPic.vue'
 
 .Buchname{
 position: absolute;
-  left:20%;
+  left:28%;
   top:35%;
 }
 .NAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:32%;
 
 }
 .AUTOR{
   position: absolute;
-  left: 20%;
+  left: 28%;
   top:42%;
 }
 .Autorenname{
   position: absolute;
-  left:20%;
+  left:28%;
   top:45%;
 }
 .GENRE{
   position: absolute;
-  left:20%;
+  left:28%;
   top:53%;
 }
 .Genrename{
   position: absolute;
-  left:20%;
+  left:28%;
   top:56%;
 }
 .ISBNNAME{
   position: absolute;
-  left:20%;
+  left:28%;
   top:64%;
 }
 .ISBNname{
   position: absolute;
-  left:20%;
+  left:28%;
   top:67%;
 }
 .BEW{
   position: absolute;
-  left:20%;
+  left:28%;
   top:75%;
 }
 .Bew{
   position: absolute;
-  left:20%;
+  left:28%;
   top:78%;
 }
 .BESCHR{
   position: absolute;
-  left:35%;
+  left:43%;
   top:35%;
 }
 .Beschreibung{
   position: absolute;
-  left:35%;
+  left:43%;
   top:38%;
 }
 .Erstellen{
   position: absolute;
-  left:60%;
+  left:69%;
   top:75%;
 }
 

@@ -110,57 +110,57 @@ import Header from '@/components/Header.vue'
 <style scoped>
 .Fantasy{
   Position:absolute;
-  left:20%;
+  left:28%;
   top:25%;
 }
 .SciFi{
   position: absolute;
-  left:20%;
+  left:28%;
   top:30%;
 }
 .Love{
   position: absolute;
-  left: 20%;
+  left: 28%;
   top:35%;
 }
 .Famliy{
   position: absolute;
-  left:20%;
+  left:28%;
   top:40%;
 }
 .Abenteuer{
   position: absolute;
-  left:20%;
+  left:28%;
   top:45%;
 }
 .Historisch{
   position: absolute;
-  left:20%;
+  left:28%;
   top:50%;
 }
 .Thriller{
   position: absolute;
-  left:20%;
+  left:28%;
   top:55%;
 }
 .Horror{
   position: absolute;
-  left:40%;
+  left:45%;
   top:25%;
 }
 .Psych{
   position: absolute;
-  left:40%;
+  left:45%;
   top:30%;
 }
 .Sach{
   position: absolute;
-  left:40%;
+  left:45%;
   top:35%;
 }
 .Fremd{
   position: absolute;
-  left:40%;
+  left:45%;
   top:40%;
 }
 </style>

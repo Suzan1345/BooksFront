@@ -6,7 +6,8 @@
   <img class="genre" src='@/assets/pics/listen.png'@click="goToGenre">
   <img class="listen" src='@/assets/pics/pen.png'@click="goToList">
 
-  <img  class="back" src="@/assets/pics/background.png">
+  <img  class="back" src="@/assets/pics/background1.png">
+  <img class="backie" src="@/assets/pics/backie4.png">
 
 </template>
 
@@ -84,12 +85,27 @@
   cursor: pointer;
 }
 .back{
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+  }
+.backie{
   position: absolute;
-  top:10%;
-  left:15%;
-  z-index: 0;
-}
+  width: 60vw;
+  height: 60vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  top:24%;
+  left:20%;
+  border-radius: 10%;
+  opacity: .55;
 
+}
 </style>
 
 

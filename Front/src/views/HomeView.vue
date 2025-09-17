@@ -39,6 +39,7 @@
     </pre>
   </template>-->
 
+
 </template>
 
 <script setup lang="ts">
@@ -116,6 +117,12 @@ position: absolute;
   left:500px;
   z-index: 1;
 
+}
+.books{
+  position: absolute;
+  top: 30%;
+  right:19%;
+  width: 70vh;
 }
 
 </style>

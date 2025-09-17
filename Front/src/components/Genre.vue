@@ -7,9 +7,10 @@
 
     <ul v-else class="list">
       <li v-if="filtered.length === 0" class="muted">Keine Bücher gefunden.</li>
+
       <li v-for="b in filtered" :key="b.id">
         <RouterLink :to="{ name: 'Buch', params: { id: b.id } }" class="item">
-          <span class="title">{{ b.title }}</span>
+          <span class="book">{{ b.title }}</span>
           <span class="by"> – {{ b.author }}</span>
         </RouterLink>
       </li>
@@ -20,39 +21,63 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 
-type Book = { id: number|string; title: string; author: string; genre: string }
+type Book = {
+  id: number | string
+  title: string
+  author: string
+  genre: string
+  isbn?: number
+  rating?: number
+  desch?: string
+}
 
 const props = defineProps<{ genre: string; title?: string }>()
 
-const loading = ref(true)
-const error   = ref<string|null>(null)
-const books   = ref<Book[]>([])
+// Prod (Render) → absolute URL; Dev → Proxy (API_BASE = '')
+const isRender =
+  typeof window !== 'undefined' && window.location.hostname.endsWith('onrender.com')
+const API_BASE = isRender ? 'https://books-1-1ljs.onrender.com' : ''
 
-const isRender = typeof window !== 'undefined' && window.location.hostname.endsWith('onrender.com')
-const BACKEND  = isRender ? 'https://books-1-1ljs.onrender.com' : '' // Dev via Proxy
+const loading = ref(true)
+const error   = ref<string | null>(null)
+const books   = ref<Book[]>([])
 
 const collator = new Intl.Collator('de', { sensitivity: 'base' })
 
-const filtered = computed(() =>
-  books.value
-    // Genre-Abgleich: exakt; falls nötig unten „normalize“ einsetzen
-    .filter(b => b.genre === props.genre)
+// robuster Genre-Vergleich (z. B. "Horror" matcht "Horrorbücher")
+const norm = (s: string) =>
+  (s ?? '').normalize('NFKD').toLowerCase().trim().replace(/[\u0300-\u036f]/g, '')
+
+const filtered = computed(() => {
+  const target = norm(props.genre)
+  return books.value
+    .filter(b => {
+      const g = norm(b.genre)
+      return g === target || g.startsWith(target)
+    })
     .slice()
-    .sort((a,b) => collator.compare(a.title ?? '', b.title ?? ''))
-)
+    .sort((a, b) => collator.compare(a.title ?? '', b.title ?? ''))
+})
 
 onMounted(async () => {
+  loading.value = true
+  error.value = null
   try {
-    const res = await fetch(`${BACKEND}/books`, { headers: { Accept: 'application/json' } })
+    // WICHTIG: überall dasselbe API_BASE verwenden (kein harter URL-String)
+    const res = await fetch(`${API_BASE}/books`, { headers: { Accept: 'application/json' } })
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`)
-    books.value = await res.json()
-  } catch (e:any) {
+    const json = await res.json()
+    books.value = Array.isArray(json) ? json : (json.data ?? json.books ?? [])
+    // Debug: verfügbare Genres anzeigen
+    // console.log('Genres:', [...new Set(books.value.map(b => b.genre))])
+  } catch (e: any) {
     error.value = e.message ?? 'Unbekannter Fehler'
   } finally {
     loading.value = false
   }
 })
 </script>
+
 
 <style scoped>
 .wrap  {

@@ -16,9 +16,7 @@
       <div class="BESCH"><p>{{ book.description }}</p></div>
 
 
-      <pre style="margin-top:1rem; background:#f7f7f7; padding:.75rem; overflow:auto;">
-{{ book }}
-      </pre>
+
     </div>
 
     <div v-else style="padding:1rem">Kein Buch gefunden.</div>

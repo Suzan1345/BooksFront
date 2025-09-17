@@ -151,6 +151,11 @@ async function createBook() {
    top:25%;
    left:30%;
    color: #664e2f;
+   font-family: "Times New Roman";
+   animation: reverse;
+   animation-duration: 3s;
+   animation-delay: 2s;
+
  }
 
 
@@ -159,6 +164,7 @@ async function createBook() {
    top:40%;
    left:30%;
    border-radius: 10%;
+   animation: forwards;
 
  }
  .search{

@@ -1,7 +1,7 @@
 <template>
   <Header></Header>
   <section class="wrap">
-    <h2 class="title">Bücher mit „{{ letter }}“</h2>
+    <h2 class="title">Bücher die mit  „{{ letter }}“</h2>
 
     <div v-if="loading" class="info">Lade Bücher…</div>
     <div v-else-if="error" class="error">Fehler: {{ error }}</div>
@@ -84,11 +84,5 @@ const filtered = computed(() =>
 </script>
 
 <style scoped>
-.wrap { padding: 1.25rem; }
-.title { margin: .25rem 0 1rem; }
-.info { padding: .5rem 0; }
-.error { color: crimson; padding: .5rem 0; }
-.list { display: grid; gap: .35rem; padding-left: 1rem; }
-.muted { color: #777; list-style: none; padding-left: 0; }
-.by { color: #666; font-weight: normal; }
+
 </style>

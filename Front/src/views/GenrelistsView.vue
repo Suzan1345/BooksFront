@@ -2,6 +2,8 @@
   <Header>
 
   </Header>
+
+
   <RouterLink class="Fantasy" to="/fan">Fantasy - Bücher</RouterLink>
   <RouterLink class="SciFi"   to="/sci">Sciencefiction - Bücher</RouterLink>
   <RouterLink class="Love"    to="/love">Liebesromane</RouterLink>
@@ -21,7 +23,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import PlaceholderPic from '@/components/PlaceholderPic.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 type Book = {
   id: number
@@ -65,6 +67,16 @@ onMounted(async () => {
     loading.value = false
   }
 })
+
+const collator = new Intl.Collator('de', { sensitivity: 'base' })
+
+const currentGenre = ref<string | null>(null) // z.B. 'Fantasy'
+const filtered = computed(() =>
+  books.value
+    .filter(b => !currentGenre.value || b.genre === currentGenre.value)
+    .slice()
+    .sort((a,b) => collator.compare(a.title ?? '', b.title ?? ''))
+)
 
 const router = useRouter();
 
@@ -163,4 +175,6 @@ import Header from '@/components/Header.vue'
   left:45%;
   top:40%;
 }
+
+
 </style>

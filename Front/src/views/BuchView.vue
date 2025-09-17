@@ -119,15 +119,15 @@ onMounted(async (): Promise<void> => {
 </script>
 
 <style scoped>
-.BNAME{ position: absolute; left:20%; top:35%; }
-.ANAME{ position: absolute; left:20%; top:42%; }
-.GNAME{ position: absolute; left:20%; top:53%; }
-.ISBN{ position: absolute; left:20%; top:64%; }
-.BEW{  position: absolute; left:20%; top:75%; }
+.BNAME{ position: absolute; left:28%; top:30%; }
+.ANAME{ position: absolute; left:28%; top:42%; }
+.GNAME{ position: absolute; left:28%; top:53%; }
+.ISBN{ position: absolute; left:28%; top:64%; }
+.BEW{  position: absolute; left:28%; top:75%; }
 .BESCH{ position: absolute; left:35%; top:35%; }
 .Kommentare{ position: absolute; left:20%; top:79%; }
 @media (max-width: 900px) {
-  .BESCH { left: 20%; top: 85%; max-width: 70%; }
+
 }
 
 </style>
